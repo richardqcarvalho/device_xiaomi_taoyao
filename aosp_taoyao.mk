@@ -11,6 +11,7 @@ $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 TARGET_USES_AOSP_RECOVERY := true
 TARGET_SUPPORTS_QUICK_TAP := true
 TARGET_INCLUDE_LIVE_WALLPAPERS := false
+TARGET_GAPPS_ARCH := arm64
 
 PRODUCT_NAME := aosp_taoyao
 PRODUCT_DEVICE := taoyao
