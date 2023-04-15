@@ -13,14 +13,15 @@ $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 PRODUCT_NAME := aosp_taoyao
 PRODUCT_DEVICE := taoyao
-PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Xiaomi 12 Lite
-
+PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+TARGET_VENDOR_PRODUCT_NAME := taoyao
+TARGET_VENDOR_DEVICE_NAME := taoyao
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_PRODUCT=taoyao \
+    TARGET_DEVICE=taoyao_global \
     PRIVATE_BUILD_DESC="taoyao_global-user 13 TKQ1.220807.001 V14.0.4.0.TLIMIXM release-keys"
 
 BUILD_FINGERPRINT := Xiaomi/taoyao_global/taoyao:13/RKQ1.211001.001/V14.0.4.0.TLIMIXM:user/release-keys
