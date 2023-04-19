@@ -6,7 +6,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 # Inherit from taoyao device
-# $(call inherit-product, device/xiaomi/taoyao/device.mk)
+$(call inherit-product, device/xiaomi/taoyao/device.mk)
 
 TARGET_USES_AOSP_RECOVERY := true
 TARGET_SUPPORTS_QUICK_TAP := true
