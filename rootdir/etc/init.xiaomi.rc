@@ -1,0 +1,79 @@
+# Fingerprint
+on init
+   # Goodix fingerprint
+    chmod 0666 /dev/goodix_fp
+    chown system system /dev/goodix_fp
+
+    chmod 0664 /dev/fortsense_fp
+    chown system system /dev/fortsense_fp
+
+on boot
+    chown system system /sys/touchpanel/fod_status
+    chmod 0644 /sys/touchpanel/fod_status
+    chown system system /sys/devices/virtual/touch/tp_dev/fod_status
+    chmod 0644 /sys/devices/virtual/touch/tp_dev/fod_status
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/irq
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/irq_enable
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/wakeup_enable
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/hw_reset
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/device_prepare
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/fingerdown_wait
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/vendor
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/request_vreg
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/simulate_irq
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/finger_irq
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/request_vreg
+    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/power_cfg
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/irq
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/wakeup_enable
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/hw_reset
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/device_prepare
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/vendor
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/request_vreg
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/simulate_irq
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/fingeron
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/request_vreg
+    chmod 0700 /sys/bus/platform/devices/soc:fingerprint_fpc/power_cfg
+
+
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui
+    chmod 0444 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display/fod_ui
+    chmod 0444 /sys/devices/platform/soc/soc:qcom,dsi-display/fod_ui
+
+on post-fs-data
+    mkdir /data/vendor/fpc 0770 system system
+    mkdir /data/vendor/fpdump 0770 system system
+    mkdir /data/vendor/goodix 0770 system system
+
+    mkdir /mnt/vendor/persist/fpc 0770 system system
+    mkdir /mnt/vendor/persist/goodix 0770 system system
+
+on early-init
+    # add xiaomi mem cgroups, used by camera
+    mkdir /dev/memcg/camera/ 0755 system system
+    write /dev/memcg/camera/memory.swappiness 100
+    write /dev/memcg/camera/memory.use_hierarchy 1
+
+    mkdir /dev/memcg/camera/app  0755 system system
+    write /dev/memcg/camera/app/memory.cache 0
+    mkdir /dev/memcg/camera/provider  0755 system system
+    write /dev/memcg/camera/provider/memory.cache 1
+    write /dev/memcg/camera/provider/memory.zram_writeback_control 1
+    mkdir /dev/memcg/camera/service  0755 system system
+    write /dev/memcg/camera/service/memory.cache 2
+
+    mkdir /dev/memcg/camera/media 0755 system system
+    mkdir /dev/memcg/camera/media/service 0755 system system
+    write /dev/memcg/camera/media/service/memory.cache 3
+    mkdir /dev/memcg/camera/media/codec 0755 system system
+    mkdir /dev/memcg/camera/media/codec/codec 0755 system system
+    write /dev/memcg/camera/media/codec/codec/memory.cache 4
+    mkdir /dev/memcg/camera/media/codec/hw 0755 system system
+    write /dev/memcg/camera/media/codec/hw/memory.cache 5
+    mkdir /dev/memcg/camera/media/codec/sw 0755 system system
+    write /dev/memcg/camera/media/codec/sw/memory.cache 6
+
+# Touch
+on boot
+    chown system system /sys/devices/virtual/touch/touch_dev/bump_sample_rate

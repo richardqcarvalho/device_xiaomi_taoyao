@@ -1,0 +1,12 @@
+[
+   {
+      "repository": "Evolution-X/hardware_xiaomi",
+      "target_path": "hardware/xiaomi",
+      "remote": "github-non-los"
+   },
+   {
+      "repository": "Evolution-X/vendor_bcr",
+      "target_path": "vendor/bcr",
+      "remote": "github-non-los"
+   },
+]
