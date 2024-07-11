@@ -11,9 +11,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from taoyao device
 $(call inherit-product, device/xiaomi/taoyao/device.mk)
 
-PRODUCT_BRAND := xiaomi
+PRODUCT_BRAND := Xiaomi
 PRODUCT_DEVICE := taoyao
-PRODUCT_MANUFACTURER := xiaomi
+PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_NAME := aosp_taoyao
 PRODUCT_MODEL := Xiaomi 12 Lite
 

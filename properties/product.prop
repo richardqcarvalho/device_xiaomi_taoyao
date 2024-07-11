@@ -91,7 +91,6 @@ ro.miui.notch=1
 ro.miui.ui.version.code=816
 ro.miui.ui.version.name=V816
 ro.opa.eligible_device=true
-ro.product.ab_ota_partitions=product
 ro.product.cpu.pagesize.max=4096
 ro.product.product.cert=
 ro.product.product.marketname=
