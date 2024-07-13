@@ -114,13 +114,17 @@ BOARD_XIAOMI_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 TARGET_USERIMAGES_USE_F2FS := true
+TARGET_USES_MKE2FS := true
 
 TARGET_COPY_OUT_ODM := odm
-
-TARGET_USES_MKE2FS := true
+TARGET_COPY_OUT_PRODUCT := product
+TARGET_COPY_OUT_SYSTEM_EXT := system_ext
+TARGET_COPY_OUT_VENDOR := vendor
 
 # Platform
 TARGET_BOARD_PLATFORM := lahaina
@@ -136,80 +140,18 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/properties/vendor.prop
 TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery.wipe
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.default
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
-BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2024-07-05
+VENDOR_SECURITY_PATCH := 2024-05-01
 
 # Verified Boot
-BOARD_AVB_ENABLE := true
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
-BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 2
-BOARD_AVB_VBMETA_SYSTEM := system system_ext product
-BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
+BOARD_AVB_ENABLE := false
 
 # VINTF
-DEVICE_MANIFEST_FILE := \
-    $(DEVICE_PATH)/vintf/AHBF@2.1-service.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.atrace@1.0-service.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.dumpstate@1.1-service.xiaomi.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.gnss@2.1-service-qti.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.graphics.mapper-impl-qti-display.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.ir@1.0-service.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.lights-qti.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.neuralnetworks@1.3-service-qti.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.sensors@2.0-multihal.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.thermal@2.0-service.qti.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.usb@1.2-service.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.wifi.hostapd.xml \
-    $(DEVICE_PATH)/vintf/android.hardware.wifi@1.0-service.xml \
-    $(DEVICE_PATH)/vintf/c2_manifest_vendor.xml \
-    $(DEVICE_PATH)/vintf/fod.xml \
-    $(DEVICE_PATH)/vintf/manifest.xml \
-    $(DEVICE_PATH)/vintf/manifest_android.hardware.drm@1.3-service.clearkey.xml \
-    $(DEVICE_PATH)/vintf/manifest_android.hardware.drm@1.3-service.widevine.xml \
-    $(DEVICE_PATH)/vintf/manifest_vendor.dolby.hardware.dms.xml \
-    $(DEVICE_PATH)/vintf/manifest_vendor.xiaomi.hardware.cld.xml \
-    $(DEVICE_PATH)/vintf/manifest_vendor.xiaomi.hardware.mfidoca.xml \
-    $(DEVICE_PATH)/vintf/manifest_vendor.xiaomi.hardware.misecurity.xml \
-    $(DEVICE_PATH)/vintf/manifest_vendor.xiaomi.hardware.mlipay.xml \
-    $(DEVICE_PATH)/vintf/manifest_vendor.xiaomi.hardware.mtdservice.xml \
-    $(DEVICE_PATH)/vintf/manifest_vendor.xiaomi.hardware.tidaservice.xml \
-    $(DEVICE_PATH)/vintf/manifest_vendor.xiaomi.hardware.vsimapp.xml \
-    $(DEVICE_PATH)/vintf/manifest_yupik.xml \
-    $(DEVICE_PATH)/vintf/mi-misight.xml \
-    $(DEVICE_PATH)/vintf/mrm.xml \
-    $(DEVICE_PATH)/vintf/power.xml \
-    $(DEVICE_PATH)/vintf/vendor.dolby.media.c2@1.0-service.xml \
-    $(DEVICE_PATH)/vintf/vendor.qti.diag.hal.service.xml \
-    $(DEVICE_PATH)/vintf/vendor.qti.gnss@4.0-service.xml \
-    $(DEVICE_PATH)/vintf/vendor.qti.hardware.display.allocator-service.xml \
-    $(DEVICE_PATH)/vintf/vendor.qti.hardware.display.composer-service.xml \
-    $(DEVICE_PATH)/vintf/vendor.qti.hardware.servicetracker@1.2-service.xml \
-    $(DEVICE_PATH)/vintf/vendor.qti.hardware.wifi.wificfr@1.0-service.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.cit.bluetooth@1.0_manifest.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.cit.wifi@1.0_manifest.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.hardware.citsensorservice@1.1-service.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.hardware.micharge@1.0.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.hardware.mimd@1.0-service.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.hardware.misys@1.0.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.hardware.misys@2.0.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.hardware.misys@3.0.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.hardware.misys@4.0.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.hardware.vibratorfeature.service.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.hw.touchfeature@1.0-service.xml \
-    $(DEVICE_PATH)/vintf/vendor.xiaomi.sensor.communicate@1.0_manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/vintf/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/vintf/framework_compatibility_matrix.xml
 DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/vintf/product_compatibility_matrix.xml
-ODM_MANIFEST_FILES := $(DEVICE_PATH)/vintf/manifest_taoyao.xml
 
 # Inherit the proprietary files
 include vendor/xiaomi/taoyao/BoardConfigVendor.mk
