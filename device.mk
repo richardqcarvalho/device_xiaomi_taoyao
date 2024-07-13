@@ -5,7 +5,7 @@
 #
 
 # A/B
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
@@ -271,7 +271,8 @@ PRODUCT_PACKAGES += \
     init.xiaomi.camera.rc \
     fstab.default \
     fstab.emmc \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    init.recovery.qcom.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.default:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.default
