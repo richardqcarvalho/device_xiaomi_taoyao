@@ -61,6 +61,9 @@ function blob_fixup() {
         vendor/etc/camera/taoyao_motiontuning.xml)
             sed -i 's/xml=version/xml\ version/g' "${2}"
 	        ;;
+        system_ext/etc/vintf/manifest/vendor.qti.qesdsys.service.xml)        
+            sed -e ':a' -e 's:/\*.*\*/:<!--&-->:;t' -e 'N;ba' -e 's:/\*\(.*\)\*/:<!--\1-->:g' "${2}"
+            ;;
     esac
 }
 
