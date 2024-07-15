@@ -143,7 +143,7 @@ vendor/lib64/rfsa/adsp/libsns_device_mode_skel.so
 vendor/lib64/rfsa/adsp/libsns_low_lat_stream_skel.so
 
 # Alarm
-system_ext/app/PowerOffAlarm/PowerOffAlarm.apk
+-system_ext/app/PowerOffAlarm/PowerOffAlarm.apk
 system_ext/lib/vendor.qti.hardware.alarm@1.0.so
 system_ext/lib64/vendor.qti.hardware.alarm@1.0.so
 vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service
@@ -1559,11 +1559,11 @@ vendor/etc/init/vendor.qti.cdsprpc-service.rc
 vendor/lib/libcdsp_default_listener.so
 vendor/lib/libcdsprpc.so
 vendor/lib/libfastcvdsp_stub.so
-vendor/lib/libfastcvopt.so
+-vendor/lib/libfastcvopt.so
 vendor/lib64/libcdsp_default_listener.so
 vendor/lib64/libcdsprpc.so
 vendor/lib64/libfastcvdsp_stub.so
-vendor/lib64/libfastcvopt.so
+-vendor/lib64/libfastcvopt.so
 
 # CIT
 vendor/bin/hw/vendor.xiaomi.cit.bluetooth@1.0-service
@@ -1701,7 +1701,7 @@ system_ext/lib64/vendor.qti.latency@2.0.so
 system_ext/lib64/vendor.qti.latency@2.1.so
 system_ext/lib64/vendor.qti.latency@2.2.so
 system_ext/lib64/vendor.qti.latency@2.3.so
-vendor/app/CneApp/CneApp.apk
+-vendor/app/CneApp/CneApp.apk
 vendor/bin/hw/vendor.qti.hardware.factory@1.0-service
 vendor/bin/cnd
 vendor/etc/cne/wqeclient/ATT/ATT_profile1.xml
@@ -2958,7 +2958,6 @@ vendor/etc/dolby/dax-default.xml
 vendor/etc/init/vendor.dolby.hardware.dms@2.0-service.rc
 vendor/etc/init/vendor.dolby.media.c2@1.0-service.rc
 -vendor/etc/vintf/manifest/manifest_vendor.dolby.hardware.dms.xml
--vendor/etc/vintf/manifest/vendor.dolby.media.c2@1.0-service.xml
 vendor/etc/dolby_vision.cfg
 vendor/lib/libdapparamstorage.so
 vendor/lib/libdeccfg.so
@@ -3088,7 +3087,7 @@ vendor/lib64/hw/vendor.qti.hardware.eid@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.eid@1.0.so
 
 # Payment (IFAA)
-vendor/app/IFAAService/IFAAService.apk
+-vendor/app/IFAAService/IFAAService.apk
 
 # Payment (Xiaomi)
 vendor/bin/fidoca
@@ -3257,7 +3256,7 @@ vendor/lib64/vendor.qti.qspmhal@1.0.so
 system_ext/lib64/vendor.qti.hardware.qxr-V1-ndk_platform.so
 
 # Radio
-system_ext/app/QtiTelephonyService/QtiTelephonyService.apk
+-system_ext/app/QtiTelephonyService/QtiTelephonyService.apk
 system_ext/lib/vendor.qti.hardware.radio.am@1.0.so
 system_ext/lib/vendor.qti.hardware.radio.internal.deviceinfo@1.0.so
 system_ext/lib/vendor.qti.hardware.radio.lpa@1.0.so
@@ -3307,8 +3306,8 @@ system_ext/lib64/vendor.qti.hardware.radio.uim_remote_client@1.0.so
 system_ext/lib64/vendor.qti.hardware.radio.uim_remote_client@1.1.so
 system_ext/lib64/vendor.qti.hardware.radio.uim_remote_client@1.2.so
 system_ext/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0.so
-system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
-vendor/app/IWlanService/IWlanService.apk
+-system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+-vendor/app/IWlanService/IWlanService.apk
 vendor/bin/hw/qcrilNrd
 vendor/bin/ATFWD-daemon
 vendor/bin/adpl
@@ -3540,7 +3539,7 @@ system_ext/lib64/vendor.qti.ims.rcsuce@1.1.so
 system_ext/lib64/vendor.qti.ims.rcsuce@1.2.so
 system_ext/lib64/vendor.qti.imsrtpservice@3.0.so
 system_ext/lib64/vendor.qti.imsrtpservice@3.1.so
-system_ext/priv-app/ims/ims.apk
+-system_ext/priv-app/ims/ims.apk
 vendor/bin/ims_rtp_daemon
 vendor/etc/init/ims_rtp_daemon.rc
 vendor/etc/seccomp_policy/imsrtp.policy
@@ -3827,7 +3826,7 @@ vendor/lib64/vendor.qti.hardware.servicetracker@1.1.so
 vendor/lib64/vendor.qti.hardware.servicetracker@1.2.so
 
 # Soter
-vendor/app/SoterService/SoterService.apk
+-vendor/app/SoterService/SoterService.apk
 vendor/bin/hw/vendor.qti.hardware.soter@1.0-service
 vendor/bin/vendor.qti.hardware.soter@1.0-provision
 vendor/etc/init/vendor.qti.hardware.soter@1.0-service.rc
@@ -3885,7 +3884,7 @@ vendor/etc/thermal-videochat.conf
 vendor/etc/thermald-devices.conf
 
 # Time services
-vendor/app/TimeService/TimeService.apk
+-vendor/app/TimeService/TimeService.apk
 vendor/bin/time_daemon
 vendor/etc/init/init.time_daemon.rc
 vendor/lib/libtime_genoff.so
@@ -4354,7 +4353,7 @@ system_ext/lib64/libwfduibcsrcinterface.so
 system_ext/lib64/vendor.qti.hardware.sigma_miracast@1.0-halimpl.so
 system_ext/lib64/vendor.qti.hardware.sigma_miracast@1.0.so
 system_ext/lib64/vendor.qti.hardware.wifidisplaysession@1.0.so
-system_ext/priv-app/WfdService/WfdService.apk
+-system_ext/priv-app/WfdService/WfdService.apk
 vendor/bin/wfdhdcphalservice
 vendor/bin/wfdvndservice
 vendor/bin/wifidisplayhalservice
@@ -4394,34 +4393,12 @@ vendor/lib64/vendor.qti.hardware.sigma_miracast@1.0.so
 vendor/lib64/vendor.qti.hardware.wifidisplaysession@1.0.so
 
 # Miscellaneous
--odm/etc/vintf/manifest_argo.xml
--odm/etc/vintf/manifest_cetus.xml
--odm/etc/vintf/manifest_haydn.xml
--odm/etc/vintf/manifest_haydn_in.xml
--odm/etc/vintf/manifest_haydnpro.xml
--odm/etc/vintf/manifest_lisa.xml
--odm/etc/vintf/manifest_mars.xml
--odm/etc/vintf/manifest_mona.xml
--odm/etc/vintf/manifest_odin.xml
--odm/etc/vintf/manifest_redwood.xml
--odm/etc/vintf/manifest_redwoodgl.xml
--odm/etc/vintf/manifest_redwoodin.xml
--odm/etc/vintf/manifest_renoir.xml
--odm/etc/vintf/manifest_star.xml
--odm/etc/vintf/manifest_taoyao.xml
--odm/etc/vintf/manifest_taoyaogl.xml
--odm/etc/vintf/manifest_venus.xml
--odm/etc/vintf/manifest_vili.xml
--odm/etc/vintf/manifest_viligl.xml
--odm/etc/vintf/manifest_viliin.xml
--odm/etc/vintf/manifest_vilijp.xml
--odm/etc/vintf/manifest_zijin.xml
 odm/etc/cit_param_config.json
 odm/ueventd.rc
-vendor/app/CACertService/CACertService.apk
-vendor/app/MipayService/MipayService.apk
-vendor/app/com.qualcomm.qti.gpudrivers.lahaina.api30/com.qualcomm.qti.gpudrivers.lahaina.api30.apk
-vendor/app/goodix_sz/goodix_sz.apk
+-vendor/app/CACertService/CACertService.apk
+-vendor/app/MipayService/MipayService.apk
+-vendor/app/com.qualcomm.qti.gpudrivers.lahaina.api30/com.qualcomm.qti.gpudrivers.lahaina.api30.apk
+-vendor/app/goodix_sz/goodix_sz.apk
 vendor/bin/hw/capabilityconfigstoretest
 vendor/bin/hw/dolbycodec2
 vendor/bin/hw/mfp-daemon
@@ -4664,9 +4641,6 @@ vendor/etc/ssg/tz_whitelist.json
 -vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@4.0.xml
 -vendor/etc/vintf/manifest/vendor.xiaomi.hw.touchfeature@1.0-service.xml
 -vendor/etc/vintf/manifest/vendor.xiaomi.sensor.communicate@1.0_manifest.xml
--vendor/etc/vintf/manifest_lahaina.xml
--vendor/etc/vintf/manifest_shima.xml
--vendor/etc/vintf/manifest_yupik.xml
 vendor/etc/1-SN1X0_SPC.txt
 vendor/etc/RES1K.wav
 vendor/etc/audio-test-config
