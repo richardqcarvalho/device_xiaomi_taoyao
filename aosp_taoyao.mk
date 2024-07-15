@@ -18,8 +18,3 @@ PRODUCT_NAME := aosp_taoyao
 PRODUCT_MODEL := Xiaomi 12 Lite
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="missi_phone_global-user 14 UKQ1.231003.002 V816.0.6.0.ULIMIXM release-keys"
-
-BUILD_FINGERPRINT := Android/missi_phone_global/missi:14/UKQ1.231003.002/V816.0.6.0.ULIMIXM:user/release-keys
