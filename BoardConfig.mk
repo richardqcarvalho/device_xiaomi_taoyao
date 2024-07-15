@@ -149,9 +149,11 @@ VENDOR_SECURITY_PATCH := 2024-05-01
 BOARD_AVB_ENABLE := false
 
 # VINTF
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/vintf/manifest_yupik.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/vintf/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/vintf/framework_compatibility_matrix.xml
 DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/vintf/product_compatibility_matrix.xml
+ODM_MANIFEST_FILES := $(DEVICE_PATH)/vintf/manifest_taoyao.xml
 
 # Inherit the proprietary files
 include vendor/xiaomi/taoyao/BoardConfigVendor.mk
