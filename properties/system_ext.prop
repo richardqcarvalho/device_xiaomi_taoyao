@@ -1,19 +1,6 @@
-# Display
-ro.surface_flinger.supports_background_blur=1
-
-# DPM
-persist.vendor.dpm.feature=11
-
-# GNSS
-persist.sys.gps.fence=true
-
-# Radio
-ro.telephony.sim_slots.count=1
-telephony.active_modems.max_count=2
-
-# Miscellaneous
 persist.sys.debug.fdtrack_abort_threshold=4096
 persist.sys.debug.fdtrack_enable_threshold=2048
+persist.sys.gps.fence=true
 persist.sys.mcd_config_file=/system_ext/etc/mcd_default.conf
 persist.sys.mi_shadow_supported=true
 persist.sys.oom_crash_on_watchdog=true
@@ -22,10 +9,13 @@ persist.sys.stability.nativehang.enable=true
 persist.sys.support_view_smoothcorner=true
 persist.sys.support_window_smoothcorner=true
 persist.sys.sysrqOnAnr_D_state=true
+persist.vendor.dpm.feature=11
 ro.fota.oem=Xiaomi
 ro.malloc.impl=jemalloc
 ro.product.system_ext.cert=
 ro.product.system_ext.marketname=
 ro.rom.zone=2
 ro.support_one_handed_mode=true
-
+ro.surface_flinger.supports_background_blur=1
+ro.telephony.sim_slots.count=1
+telephony.active_modems.max_count=2
