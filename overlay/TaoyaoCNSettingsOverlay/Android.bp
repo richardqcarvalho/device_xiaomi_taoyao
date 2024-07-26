@@ -1,0 +1,4 @@
+runtime_resource_overlay {
+    name: "TaoyaoCNSettingsOverlay",
+    product_specific: true,
+}

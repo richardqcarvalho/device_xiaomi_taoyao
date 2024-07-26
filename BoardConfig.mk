@@ -30,53 +30,47 @@ AB_OTA_PARTITIONS += \
 
 # Architecture
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-2a
+TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
-TARGET_CPU_VARIANT_RUNTIME := kryo385
+TARGET_CPU_VARIANT_RUNTIME := kryo300
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
-TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
 
 # Audio
 AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
 AUDIO_FEATURE_ENABLED_GKI := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
-AUDIO_FEATURE_ENABLED_SVA_MULTI_STAGE := true
 BOARD_SUPPORTS_SOUND_TRIGGER := true
 TARGET_PROVIDES_AUDIO_EXTNS := true
 
-# Board
 TARGET_BOOTLOADER_BOARD_NAME := taoyao
+
+# SurfaceFlinger
+TARGET_USE_AOSP_SURFACEFLINGER := true
 
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
+# Build Flags
+RELAX_USES_LIBRARY_CHECK := true
+
 # Camera
 TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED := true
-
-# Camera - Miui
 TARGET_CAMERA_PACKAGE_NAME := com.android.camera
 
 # Disable sparse for ext images
-TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
-
-# Display
-TARGET_SCREEN_DENSITY := 440
-TARGET_USES_VULKAN := true
+#TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 
 # DRM
-TARGET_ENABLE_MEDIADRM_64 := true
-
-# Dolby Vision
-SOONG_CONFIG_NAMESPACES += dolby_vision
-SOONG_CONFIG_dolby_vision += enabled
-SOONG_CONFIG_dolby_vision_enabled := true
+TARGET_SCREEN_DENSITY := 440
+TARGET_USES_VULKAN := true
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
@@ -91,20 +85,28 @@ DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     $(DEVICE_PATH)/configs/hidl/vendor_framework_compatibility_matrix.xml \
     $(DEVICE_PATH)/configs/hidl/xiaomi_framework_compatibility_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
+    vendor/aosp/config/device_framework_matrix.xml
 
 DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/configs/hidl/manifest_lahaina.xml \
     $(DEVICE_PATH)/configs/hidl/manifest_xiaomi.xml
 
 # HWUI
-#HWUI_COMPILE_FOR_PERF := false
+#HWUI_COMPILE_FOR_PERF := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_taoyao
 TARGET_RECOVERY_DEVICE_MODULES := libinit_taoyao
 
+KERNEL_PATH := $(DEVICE_PATH)-kernel
+
+# DTB
+BOARD_USES_DT := true
+BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
+BOARD_PREBUILT_DTBIMAGE_DIR := $(KERNEL_PATH)/dtbs
+
 # Kernel
+$(shell mkdir -p $(OUT_DIR)/target/product/taoyao/obj/KERNEL_OBJ/usr)
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image
@@ -112,8 +114,8 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_RAMDISK_USE_LZ4 := true
 
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8350
-TARGET_KERNEL_CONFIG := lahaina-qgki_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/taoyao
+TARGET_KERNEL_CONFIG := taoyao_defconfig
 
 BOARD_BOOT_HEADER_VERSION := 3
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
@@ -138,11 +140,9 @@ BOARD_KERNEL_BINARIES := kernel
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbo.img
 
 TARGET_FORCE_PREBUILT_KERNEL := true
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb.img
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-kernel/kernel
 
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)-kernel/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
     $(DEVICE_PATH)-kernel/kernel:kernel \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/ramdisk/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules) \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/vendor/,$(TARGET_COPY_OUT_VENDOR)/lib/modules)
@@ -161,7 +161,6 @@ BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_DTBOIMG_PARTITION_SIZE := 16777216
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 113254576128
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_USES_METADATA_PARTITION := true
 
@@ -176,7 +175,7 @@ BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 
--include vendor/lineage/config/BoardConfigReservedSize.mk
+-include vendor/aosp/config/BoardConfigReservedSize.mk
 BOARD_SYSTEM_EXTIMAGE_PARTITION_RESERVED_SIZE := 104857600
 BOARD_VENDORIMAGE_PARTITION_RESERVED_SIZE := 104857600
 
@@ -189,8 +188,7 @@ TARGET_COPY_OUT_PRODUCT := product
 TARGET_BOARD_PLATFORM := lahaina
 
 # Power
-#TARGET_POWER_LIBPERFMGR_MODE_EXTENSION_LIB := //$(DEVICE_PATH):libperfmgr-ext-xiaomi
-#TARGET_POWERHAL_MODE_EXT_LIB := //$(DEVICE_PATH):libperfmgr-ext-xiaomi
+TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-mode.cpp
 
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/properties/odm.prop
@@ -214,12 +212,10 @@ TARGET_RECOVERY_UI_MARGIN_HEIGHT := 50
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2024-02-01
+VENDOR_SECURITY_PATCH := 2024-07-01
 
 # Sepolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
-include device/lineage/sepolicy/libperfmgr/sepolicy.mk
-SELINUX_IGNORE_NEVERALLOWS := true
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
@@ -253,13 +249,16 @@ SOONG_CONFIG_NAMESPACES += SENSORS_XIAOMI
 SOONG_CONFIG_SENSORS_XIAOMI += USES_UDFPS_SENSOR
 SOONG_CONFIG_SENSORS_XIAOMI_USES_UDFPS_SENSOR := true
 
-# Wi-Fi
+# WiFi
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+CONFIG_IEEE80211AX := true
 QC_WIFI_HIDL_FEATURE_DUAL_AP := true
+QC_WIFI_HIDL_FEATURE_DUAL_STA := true
+WIFI_DRIVER_BUILT := qca_cld3
 WIFI_DRIVER_DEFAULT := qca_cld3
 WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wlan"
 WIFI_DRIVER_STATE_OFF := "OFF"
@@ -268,9 +267,6 @@ WIFI_HIDL_FEATURE_AWARE := true
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-
-CONFIG_ACS := true
-CONFIG_IEEE80211AX := true
 
 # Inherit proprietary blobs
 -include vendor/xiaomi/taoyao/BoardConfigVendor.mk

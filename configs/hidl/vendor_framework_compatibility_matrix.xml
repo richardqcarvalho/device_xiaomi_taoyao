@@ -846,15 +846,16 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </interface>
     </hal>
        <!-- Codec2 HAl service -->
-   <hal format="hidl" optional="true">
-       <name>android.hardware.media.c2</name>
-       <version>1.2</version>
-       <interface>
-           <name>IComponentStore</name>
-           <instance>default</instance>
-           <instance>software</instance>
-       </interface>
-   </hal>
+    <hal format="hidl" optional="true">
+        <name>android.hardware.media.c2</name>
+        <version>1.0</version>
+        <interface>
+            <name>IComponentStore</name>
+            <instance>default</instance>
+            <instance>dolby</instance>
+            <instance>software</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.lineage.livedisplay</name>
         <transport>hwbinder</transport>
@@ -880,10 +881,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.perf</name>
-        <version>2.2</version>
-        <interface>
+         <version>2.0-2</version>
+         <interface>
             <name>IPerf</name>
             <instance>default</instance>
-        </interface>
+         </interface>
     </hal>
 </compatibility-matrix>

@@ -24,10 +24,6 @@ persist.vendor.audio.voicecall.speaker.stereo=true
 ro.vendor.audio.afe.record=true
 ro.vendor.audio.camera.bt.record.support=true
 ro.vendor.audio.camera.loopback.support=true
-ro.vendor.audio.dolby.dax.support=true
-ro.vendor.audio.dolby.eq.half=true
-ro.vendor.audio.dolby.surround.enable=true
-ro.vendor.audio.dolby.vision.support=true
 ro.vendor.audio.dump.mixer=false
 ro.vendor.audio.enhance.support=false
 ro.vendor.audio.feature.fade=false
@@ -179,11 +175,31 @@ ro.hardware.camera=xiaomi
 ro.crypto.dm_default_key.options_format.version=2
 ro.crypto.volume.metadata.method=dm-default-key
 
-# Dexopt
-dalvik.vm.boot-dex2oat-cpu-set=1,2,3,4,5,6,7
-dalvik.vm.boot-dex2oat-threads=7
-dalvik.vm.image-dex2oat-cpu-set=0,1,2,3,4,5,6,7
-dalvik.vm.image-dex2oat-threads=8
+# Dolby
+ro.vendor.dolby.dax.version=DAX3_3.6.1.6_r1
+ro.vendor.audio.dolby.dax.support=true
+ro.vendor.display.dolbyvision.support=true
+ro.vendor.audio.dolby.eq.half=true
+ro.vendor.audio.dolby.surround.enable=true
+ro.vendor.audio.dolby.vision.support=true
+
+# Dolby Vision
+ro.vendor.audio.dolby.vision.support=true
+debug.config.media.video.dolby_vision_suports=true
+vendor.audio.c2.preferred=true
+ro.vendor.audio.dolby.dax.support=true
+ro.vendor.audio.dolby.vision.support=true
+
+# Fingerprint
+persist.vendor.fod.modified.dc_status=false
+persist.vendor.power.dfps.level=0
+persist.vendor.sys.fp.fod.location.X_Y=437,2046
+persist.vendor.sys.fp.fod.size.width_height=206,206
+ro.hardware.fp.fod.location=low
+ro.hardware.fp.fod=true
+
+# DRM
+drm.service.enabled=true
 
 # DPM
 persist.vendor.dpm.feature=1
@@ -191,14 +207,8 @@ persist.vendor.dpm.idletimer.mode=default
 persist.vendor.dpm.nsrm.bkg.evt=3955
 persist.vendor.dpmhalservice.enable=1
 
-# Fingerprint ( FOD )
-persist.vendor.fod.modified.dc_status=false
-persist.vendor.power.dfps.level=0
-ro.hardware.fp.fod=true
-ro.hardware.fp.fod.location=low
-
 # FRP
-#ro.frp.pst=/dev/block/bootdevice/by-name/frp
+ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
 # Gatekeeper
 vendor.gatekeeper.disable_spu=true
@@ -273,7 +283,7 @@ ro.vendor.nfc.disable.i2c=true
 ro.vendor.nfc.dispatch_optim=1
 ro.vendor.nfc.repair=1
 ro.vendor.se.chip.model=SN110T
-ro.vendor.se.type=,HCE,UICC
+ro.vendor.se.type=eSE,HCE,UICC
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
@@ -333,3 +343,31 @@ ro.hardware.wlan.chip=6750
 ro.hardware.wlan.dbs=0
 ro.hardware.wlan.mimo=1
 ro.hardware.wlan.vendor=qcom
+
+# prop for autobrightness hbm
+ro.vendor.hbm_backlight.enable=true
+
+# prop for thermal dimming
+ro.vendor.thermal.dimming.enable=true
+
+# prop for displayfeture cabc/bcbc/dfps
+ro.vendor.cabc.enable=fasle
+ro.vendor.bcbc.enable=true
+ro.vendor.dfps.enable=false
+
+#Property for GameColorPlus
+ro.vendor.gcp.enable=1
+
+#Property for Local HBM
+ro.vendor.localhbm.enable=true
+
+# Fling 
+# ro.min.fling_velocity=160  
+# ro.max.fling_velocity=20000 
+# ro.vendor.qti.cgroup_follow.enable=true  
+# persist.vendor.qti.inputopts.enable=true  
+# persist.vendor.qti.inputopts.movetouchslop=0.6  
+# ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0 
+ 
+# Zygote 
+zygote.critical_window.minute=10

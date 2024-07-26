@@ -1,3 +1,6 @@
+# Display
+ro.surface_flinger.supports_background_blur=1
+
 # Bluetooth
 bluetooth.hardware.power.operating_voltage_mv=3700
 

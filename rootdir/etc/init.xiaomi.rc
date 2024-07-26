@@ -8,10 +8,6 @@ on init
     chown system system /dev/fortsense_fp
 
 on boot
-    chown system system /sys/touchpanel/fod_status
-    chmod 0644 /sys/touchpanel/fod_status
-    chown system system /sys/devices/virtual/touch/tp_dev/fod_status
-    chmod 0644 /sys/devices/virtual/touch/tp_dev/fod_status
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/irq
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/irq_enable
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/wakeup_enable

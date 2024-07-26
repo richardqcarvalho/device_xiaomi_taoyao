@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2024 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+     <!-- The stable device width and height in pixels. If these aren't set to a positive number
+          then the device will use the width and height of the default display the first time it's
+          booted.  -->
+    <integer name="config_stableDeviceDisplayWidth">1080</integer>
+    <integer name="config_stableDeviceDisplayHeight">2400</integer>
+</resources>

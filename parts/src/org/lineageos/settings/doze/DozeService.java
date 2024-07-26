@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2015 The CyanogenMod Project
- *               2017-2018 The LineageOS Project
+ *               2017-2020 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,17 +25,18 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.util.Log;
 
+import org.lineageos.settings.sensors.ProximitySensor;
+
 public class DozeService extends Service {
     private static final String TAG = "DozeService";
     private static final boolean DEBUG = false;
 
-    private AodSensor mAodSensor;
+    private ProximitySensor mProximitySensor;
 
     @Override
     public void onCreate() {
-        if (DEBUG)
-            Log.d(TAG, "Creating service");
-        mAodSensor = new AodSensor(this);
+        if (DEBUG) Log.d(TAG, "Creating service");
+        mProximitySensor = new ProximitySensor(this);
 
         IntentFilter screenStateFilter = new IntentFilter();
         screenStateFilter.addAction(Intent.ACTION_SCREEN_ON);
@@ -45,17 +46,16 @@ public class DozeService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (DEBUG)
-            Log.d(TAG, "Starting service");
+        if (DEBUG) Log.d(TAG, "Starting service");
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        if (DEBUG)
-            Log.d(TAG, "Destroying service");
+        if (DEBUG) Log.d(TAG, "Destroying service");
         super.onDestroy();
         this.unregisterReceiver(mScreenStateReceiver);
+        mProximitySensor.disable();
     }
 
     @Override
@@ -64,18 +64,18 @@ public class DozeService extends Service {
     }
 
     private void onDisplayOn() {
-        if (DEBUG)
-            Log.d(TAG, "Display on");
-        if (DozeUtils.isDozeAutoBrightnessEnabled(this)) {
-            mAodSensor.disable();
+        if (DEBUG) Log.d(TAG, "Display on");
+        if (DozeUtils.isHandwaveGestureEnabled(this) ||
+                DozeUtils.isPocketGestureEnabled(this)) {
+            mProximitySensor.disable();
         }
     }
 
     private void onDisplayOff() {
-        if (DEBUG)
-            Log.d(TAG, "Display off");
-        if (DozeUtils.isDozeAutoBrightnessEnabled(this)) {
-            mAodSensor.enable();
+        if (DEBUG) Log.d(TAG, "Display off");
+        if (DozeUtils.isHandwaveGestureEnabled(this) ||
+                DozeUtils.isPocketGestureEnabled(this)) {
+            mProximitySensor.enable();
         }
     }
 

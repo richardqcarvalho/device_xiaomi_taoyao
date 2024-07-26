@@ -40,8 +40,6 @@
 /sys/devices/virtual/touch/tp_dev/double_tap                       u:object_r:vendor_sysfs_double_tap:s0
 /dev/xiaomi-touch                                                  u:object_r:vendor_touchfeature_device:s0
 
-/vendor/bin/hw/android\.hardware\.power-service\.pixel-libperfmgr          u:object_r:hal_power_default_exec:s0
-
 # Mi_Disp
 /sys/devices/virtual/mi_display/disp_feature/disp-DSI-+[0-1](/.*)?	u:object_r:vendor_sysfs_graphics:s0
 
@@ -60,13 +58,9 @@
 /data/vendor/fpdump(/.*)?                                           u:object_r:fingerprint_vendor_data_file:s0
 /data/vendor/goodix(/.*)?                                           u:object_r:fingerprint_vendor_data_file:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service\.xiaomi      u:object_r:hal_fingerprint_default_exec:s0
-/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_hbm      u:object_r:vendor_sysfs_udfps:s0
-/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui       u:object_r:vendor_sysfs_udfps:s0
 /sys/devices/virtual/touch/tp_dev/fod_status                        u:object_r:vendor_sysfs_udfps:s0
 /sys/devices/virtual/touch/touch_dev/fod_press_status               u:object_r:vendor_sysfs_udfps:s0
 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/dimlayer_hbm   u:object_r:vendor_sysfs_udfps:s0
-
-/(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.dtool@1\.0-service                         u:object_r:vendor_dtool_exec:s0
 
 # Sensors Fix script
 /vendor/bin/init\.sensors_fix\.sh	      u:object_r:vendor_init-qcom-sensors-sh_exec:s0
@@ -91,3 +85,16 @@
 
 # Label discard_max_bytes in /data partition
 /sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:0/block/sda/queue/discard_max_bytes     u:object_r:vendor_sysfs_scsi_host:s0
+
+
+/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_hbm      u:object_r:vendor_sysfs_udfps:s0
+/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui       u:object_r:vendor_sysfs_udfps:s0
+
+# Leds
+/sys/devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-02/c440000.qcom,spmi:qcom,pm8350c@2:qcom,flash_led@ee00/leds/led:torch_[0-3](/.*)        u:object_r:sysfs_leds:s0
+/sys/devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-02/c440000.qcom,spmi:qcom,pm8350c@2:qcom,flash_led@ee00/leds/led:flash_[0-3](/.*)        u:object_r:sysfs_leds:s0
+/sys/devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-02/c440000.qcom,spmi:qcom,pm8350c@2:qcom,flash_led@ee00/leds/led:switch_[0-3](/.*)       u:object_r:sysfs_leds:s0
+
+
+# Display
+/sys/devices/virtual/mi_display/disp_feature/disp-DSI-+[0-1]/disp_count u:object_r:vendor_sysfs_graphics:s0

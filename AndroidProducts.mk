@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_taoyao.mk
+    $(LOCAL_DIR)/aosp_taoyao.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_taoyao-user \
-    lineage_taoyao-userdebug \
-    lineage_taoyao-eng
+    aosp_taoyao-user \
+    aosp_taoyao-userdebug \
+    aosp_taoyao-eng

@@ -14,8 +14,6 @@ binder_call(system_app, wificond)
 # Aware
 get_prop(system_app, vendor_aware_available_prop);
 
-allow system_app sysfs_thermal:file write;
-
 # Xiaomi Parts
 allow system_app sysfs_thermal:file rw_file_perms;
 
