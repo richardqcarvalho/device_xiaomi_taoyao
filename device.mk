@@ -21,9 +21,9 @@ $(call inherit-product-if-exists, vendor/xiaomi/taoyao/taoyao-vendor.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Dolby
-$(call inherit-product, vendor/xiaomi/dolby/products/dolby.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/dolby/products/dolby.mk)
 
-$(call inherit-product, hardware/dolby/dolby.mk)
+$(call inherit-product-if-exists, hardware/dolby/dolby.mk)
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
