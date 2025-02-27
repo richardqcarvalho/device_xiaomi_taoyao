@@ -13,10 +13,8 @@ $(call inherit-product, device/xiaomi/taoyao/device.mk)
 
 # Inherit from common CrDroid configuration
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
-TARGET_DISABLE_EPPE := true
-TARGET_ENABLE_BLUR := true
+
 TARGET_BOOT_ANIMATION_RES := 1080
-#WITH_GMS := true
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := aosp_taoyao

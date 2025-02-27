@@ -49,8 +49,5 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/sku/,$(TARGET_COPY_OUT_ODM)/etc)
 
-# Viper
-$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
-
 # Call the proprietary setup
 $(call inherit-product, vendor/xiaomi/taoyao/taoyao-vendor.mk)

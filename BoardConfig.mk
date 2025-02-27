@@ -5,13 +5,8 @@
 #
 
 DEVICE_PATH := device/xiaomi/taoyao
-#BUILD_BROKEN_ELF_PREBUILT__COPY_FILES := true
-#BUILD_BROKEN_DUP_RULES := true
 
 TARGET_BOOTLOADER_BOARD_NAME := taoyao
-
-# Screen density
-TARGET_SCREEN_DENSITY := 400
 
 # Inherit from sm8350-common
 include device/xiaomi/sm8350-common/BoardConfigCommon.mk
