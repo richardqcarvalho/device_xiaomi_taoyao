@@ -1,0 +1,5 @@
+# GFX
+ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.lahaina.api30
+
+# Sensors
+ro.vendor.sensors.xiaomi.udfps=true

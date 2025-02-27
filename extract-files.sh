@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# SPDX-FileCopyrightText: 2016 The CyanogenMod Project
+# SPDX-FileCopyrightText: 2017-2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+#
+
+function blob_fixup() {
+    case "${1}" in
+        vendor/etc/camera/pureShot_parameter.xml | vendor/etc/camera/pureView_parameter.xml)
+            [ "$2" = "" ] && return 0
+            sed -i 's/=\([0-9]\+\)>/="\1">/g' "${2}"
+            ;;
+        vendor/lib64/hw/camera.xiaomi.so)
+            [ "$2" = "" ] && return 0
+            "${SIGSCAN}" -p "29 07 00 94" -P "1F 20 03 D5" -f "${2}"
+            ;;
+        vendor/lib64/hw/camera.qcom.so | vendor/lib64/libFaceDetectpp-0.5.2.so | vendor/lib64/libfacedet.so)
+            [ "$2" = "" ] && return 0
+            sed -i "s/\x73\x74\x5F\x6C\x69\x63\x65\x6E\x73\x65\x2E\x6C\x69\x63/\x63\x61\x6D\x65\x72\x61\x5F\x63\x6E\x66\x2E\x74\x78\x74/g" "${2}"
+            sed -i "s|libmegface.so|libfacedet.so|g" "${2}"
+            sed -i "s|libMegviiFacepp-0.5.2.so|libFaceDetectpp-0.5.2.so|g" "${2}"
+            sed -i "s|megviifacepp_0_5_2_model|facedetectpp_0_5_2_model|g" "${2}"
+            ;;
+        vendor/etc/camera/taoyao_motiontuning.xml)
+            [ "$2" = "" ] && return 0
+            sed -i 's/xml=version/xml\ version/g' "${2}"
+            ;;
+        vendor/lib64/hw/displayfeature.default.so | proprietary/vendor/lib64/libmi-stc-HW-modulate.so)
+            [ "$2" = "" ] && return 0
+            grep -q "libstagefright_foundation-v33.so" "${2}" || "${PATCHELF}" --replace-needed "libstagefright_foundation.so" "libstagefright_foundation-v33.so" "${2}"
+            ;;
+        vendor/lib64/hw/com.qti.chi.override.so)
+            [ "$2" = "" ] && return 0
+            sed -i 's/\/system\/lib64\/libion.so/\/vendor\/lib64\/libion.so/g' "${2}"
+            ;;
+        vendor/lib64/libmialgoengine.so)
+            [ "$2" = "" ] && return 0
+            sed -i 's/\/system\/lib64\/android.hardware.graphics.allocator@3.0.so/\/vendor\/lib64\/android.hardware.graphics.allocator@3.0.so/g' "${2}"
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+
+    return 0
+}
+
+function blob_fixup_dry() {
+    blob_fixup "$1" ""
+}
+
+# If we're being sourced by the common script that we called,
+# stop right here. No need to go down the rabbit hole.
+if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
+    return
+fi
+
+set -e
+
+export DEVICE=taoyao
+export DEVICE_COMMON=sm8350-common
+export VENDOR=xiaomi
+export VENDOR_COMMON=${VENDOR}
+
+"./../../${VENDOR_COMMON}/${DEVICE_COMMON}/extract-files.sh" "$@"
