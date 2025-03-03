@@ -24,17 +24,20 @@ DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/hidl/manifest_xiaomi.xml \
     $(DEVICE_PATH)/hidl/manifest_taoyao.xml
 
-TARGET_KERNEL_CONFIG += vendor/taoyao_QGKI.config
-TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts-master/clang/host/linux-x86/clang-r383902b1
-
-BOOT_KERNEL_MODULES := \
-    msm_drm.ko \
-    focaltech_touch.ko \
-    goodix_core.ko \
-    hwid.ko \
-    xiaomi_touch.ko
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(BOOT_KERNEL_MODULES)
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
+TARGET_NO_KERNEL_OVERRIDE := true
+BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_KERNEL_SEPARATED_DTBO := false
+BOARD_PREBUILT_DTBOIMAGE := $(INSTALLED_DTBIMAGE_TARGET)
+TARGET_KERNEL_SOURCE := kernel/xiaomi/taoyao
+VENDOR_RAMDISK_KERNEL_MODULES := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(KERNEL_MODULES_OUT)/msm_drm.ko
+KERNEL_DEFCONFIG := vendor/taoyao-qgki_defconfig
+BOARD_KERNEL_BINARIES := kernel kernel-gki
+TARGET_KERNEL_VERSION := 5.4
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_USES_UNCOMPRESSED_KERNEL := false
 
 # NFC
 TARGET_USES_NQ_NFC := true
