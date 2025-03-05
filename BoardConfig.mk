@@ -27,8 +27,8 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/taoyao
 TARGET_KERNEL_CONFIG := vendor/taoyao-qgki_defconfig
 TARGET_KERNEL_LLVM_BINUTILS := false
 TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/kernel/linux-x86/clang-r416183b
-TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts-master/kernel-build-tools/linux-x86/bin/dtc
-TARGET_KERNEL_ADDITIONAL_FLAGS += DTC_OVERLAY_TEST_EXT=$(shell pwd)/prebuilts-master/kernel-build-tools/linux-x86/bin/ufdt_apply_overlay
+TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/kernel-build-tools/linux-x86/bin/dtc
+TARGET_KERNEL_ADDITIONAL_FLAGS += DTC_OVERLAY_TEST_EXT=$(shell pwd)/prebuilts/kernel-build-tools/linux-x86/bin/ufdt_apply_overlay
 TARGET_KERNEL_ADDITIONAL_FLAGS += CONFIG_BUILD_ARM64_DT_OVERLAY=y
 TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTAR=$(shell pwd)/prebuilts-master/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ar
 TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTLD=$(shell pwd)/prebuilts-master/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ld
