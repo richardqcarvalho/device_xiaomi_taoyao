@@ -7,10 +7,7 @@
 # Inherit from sm8350-common
 $(call inherit-product, device/xiaomi/sm8350-common/common.mk)
 
-KERNEL_LLVM_SUPPORT := true
-KERNEL_SD_LLVM_SUPPORT := false
-KERNEL_MODULES_INSTALL := dlkm
-KERNEL_MODULES_OUT := out/target/product/taoyao/$(KERNEL_MODULES_INSTALL)/lib/modules
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 TARGET_HAS_UDFPS := true
 
@@ -47,8 +44,7 @@ PRODUCT_COPY_FILES += \
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH) \
-    device/xiaomi/taoyao-kernel
+    $(LOCAL_PATH)
 
 # Sku properties
 PRODUCT_COPY_FILES += \

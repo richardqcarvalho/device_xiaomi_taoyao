@@ -24,20 +24,29 @@ DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/hidl/manifest_xiaomi.xml \
     $(DEVICE_PATH)/hidl/manifest_taoyao.xml
 
-TARGET_NO_KERNEL_OVERRIDE := true
-BOARD_INCLUDE_RECOVERY_DTBO := true
-BOARD_KERNEL_SEPARATED_DTBO := false
-BOARD_PREBUILT_DTBOIMAGE := $(INSTALLED_DTBIMAGE_TARGET)
+# Kernel
+TARGET_KERNEL_NO_GCC := false
 TARGET_KERNEL_SOURCE := kernel/xiaomi/taoyao
-VENDOR_RAMDISK_KERNEL_MODULES := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(KERNEL_MODULES_OUT)/msm_drm.ko
-KERNEL_DEFCONFIG := vendor/taoyao-qgki_defconfig
-BOARD_KERNEL_BINARIES := kernel kernel-gki
-TARGET_KERNEL_VERSION := 5.4
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_USES_UNCOMPRESSED_KERNEL := false
+TARGET_KERNEL_CONFIG := vendor/taoyao-qgki_defconfig
+TARGET_KERNEL_LLVM_BINUTILS := false
+TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/kernel/linux-x86/clang-r416183b
+TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts-master/kernel-build-tools/linux-x86/bin/dtc
+TARGET_KERNEL_ADDITIONAL_FLAGS += DTC_OVERLAY_TEST_EXT=$(shell pwd)/prebuilts-master/kernel-build-tools/linux-x86/bin/ufdt_apply_overlay
+TARGET_KERNEL_ADDITIONAL_FLAGS += CONFIG_BUILD_ARM64_DT_OVERLAY=y
+TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTAR=$(shell pwd)/prebuilts-master/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ar
+TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTLD=$(shell pwd)/prebuilts-master/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ld
+TARGET_KERNEL_ADDITIONAL_FLAGS += REAL_CC=$(TARGET_KERNEL_CLANG_PATH)/bin/clang
+TARGET_KERNEL_ADDITIONAL_FLAGS += LLVM_NM=$(TARGET_KERNEL_CLANG_PATH)/bin/llvm-nm
+TARGET_KERNEL_ADDITIONAL_FLAGS += NM=$(TARGET_KERNEL_CLANG_PATH)/bin/llvm-nm
+
+BOOT_KERNEL_MODULES := \
+    msm_drm.ko \
+    focaltech_touch.ko \
+    goodix_core.ko \
+    hwid.ko \
+    xiaomi_touch.ko
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(BOOT_KERNEL_MODULES)
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
 
 # NFC
 TARGET_USES_NQ_NFC := true
