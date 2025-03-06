@@ -5,4 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_taoyao.mk
+    $(LOCAL_DIR)/lineage_taoyao.mk
