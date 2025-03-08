@@ -30,8 +30,8 @@ TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/kernel/linux-x86/clang-
 TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/kernel-build-tools/linux-x86/bin/dtc
 TARGET_KERNEL_ADDITIONAL_FLAGS += DTC_OVERLAY_TEST_EXT=$(shell pwd)/prebuilts/kernel-build-tools/linux-x86/bin/ufdt_apply_overlay
 TARGET_KERNEL_ADDITIONAL_FLAGS += CONFIG_BUILD_ARM64_DT_OVERLAY=y
-TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTAR=$(shell pwd)/prebuilts-master/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ar
-TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTLD=$(shell pwd)/prebuilts-master/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ld
+TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTAR=$(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-ar
+TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTLD=$(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld
 TARGET_KERNEL_ADDITIONAL_FLAGS += REAL_CC=$(TARGET_KERNEL_CLANG_PATH)/bin/clang
 TARGET_KERNEL_ADDITIONAL_FLAGS += LLVM_NM=$(TARGET_KERNEL_CLANG_PATH)/bin/llvm-nm
 TARGET_KERNEL_ADDITIONAL_FLAGS += NM=$(TARGET_KERNEL_CLANG_PATH)/bin/llvm-nm
