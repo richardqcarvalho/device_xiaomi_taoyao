@@ -37,7 +37,8 @@ DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/hidl/manifest_taoyao.xml
 
 # Kernel
-TARGET_KERNEL_CONFIG += vendor/taoyao_QGKI.config
+TARGET_KERNEL_SOURCE := kernel/xiaomi/taoyao
+TARGET_KERNEL_CONFIG := vendor/taoyao-qgki_defconfig
 TARGET_NO_KERNEL_OVERRIDE := true
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
 
