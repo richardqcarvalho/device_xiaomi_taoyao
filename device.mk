@@ -125,5 +125,12 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/sku/,$(TARGET_COPY_OUT_ODM)/etc)
 
+# Wifi
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/qca6750/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/qca6750/WCNSS_qcom_cfg.ini
+
+PRODUCT_PACKAGES += \
+    firmware_qca6750_WCNSS_qcom_cfg.ini_symlink
+
 # Call the proprietary setup
 $(call inherit-product, vendor/xiaomi/taoyao/taoyao-vendor.mk)
