@@ -27,14 +27,14 @@ TARGET_USES_QTI_MAPPER_EXTENSIONS_1_1 := true
 TARGET_USES_GRALLOC4 := true
 
 # HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(DEVICE_PATH)/hidl/vendor_framework_compatibility_matrix.xml \
-    $(DEVICE_PATH)/hidl/xiaomi_framework_compatibility_matrix.xml
-
 DEVICE_MANIFEST_FILE += \
-    $(DEVICE_PATH)/hidl/manifest_lahaina.xml \
+    $(DEVICE_PATH)/hidl/manifest_yupik.xml \
     $(DEVICE_PATH)/hidl/manifest_xiaomi.xml \
     $(DEVICE_PATH)/hidl/manifest_taoyao.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(DEVICE_PATH)/hidl/vendor_framework_compatibility_matrix.xml \
+    $(DEVICE_PATH)/hidl/xiaomi_framework_compatibility_matrix.xml \
+    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
 
 # Kernel
 TARGET_KERNEL_CONFIG += vendor/taoyao_QGKI.config
