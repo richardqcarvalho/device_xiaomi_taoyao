@@ -38,22 +38,7 @@ DEVICE_MANIFEST_FILE += \
 
 # Kernel
 TARGET_KERNEL_CONFIG += vendor/taoyao_QGKI.config
-TARGET_NO_KERNEL_OVERRIDE := true
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/prebuilts/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
-    $(DEVICE_PATH)/prebuilts/kernel:kernel
-
-BOARD_KERNEL_MODULE_DIRS := 5.4-gki
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
-    $(DEVICE_PATH)/prebuilts/modules/msm_drm.ko \
-    $(DEVICE_PATH)/prebuilts/modules/focaltech_touch.ko \
-    $(DEVICE_PATH)/prebuilts/modules/goodix_core.ko \
-    $(DEVICE_PATH)/prebuilts/modules/hwid.ko \
-    $(DEVICE_PATH)/prebuilts/modules/xiaomi_touch.ko
-BOARD_VENDOR_KERNEL_MODULES := $(strip $(shell find $(DEVICE_PATH)/prebuilts/modules -maxdepth 1 -name "*.ko"))
-BOARD_VENDOR_KERNEL_MODULES_5.4-gki := $(strip $(shell find $(DEVICE_PATH)/prebuilts/modules/5.4-gki -maxdepth 1 -name "*.ko"))
+include device/xiaomi/taoyao-kernel/BoardConfig.mk
 
 # NFC
 TARGET_USES_NQ_NFC := true
