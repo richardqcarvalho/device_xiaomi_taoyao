@@ -71,12 +71,6 @@ PRODUCT_COPY_FILES += \
     $(DISPLAY_HAL_DIR)/config/qdcm_calib_data_nt36672e_lcd_video_mode_dsi_novatek_fhd_plus_144Hz_with_DSC.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_nt36672e_60_Hz_fhd_plus_video_mode_panel_without_DSC.xml \
     $(DISPLAY_HAL_DIR)/config/smomo_setting.xml:$(TARGET_COPY_OUT_VENDOR)/etc/smomo_setting.xml
 
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.demo.hdmirotationlock=false \
-    vendor.display.disable_rotator_ubwc=1 \
-    vendor.display.disable_layer_stitch=0 \
-    vendor.display.hw_recovery_threshold=5
-
 # Fingerprint
 TARGET_HAS_UDFPS := true
 
