@@ -1,3 +1,17 @@
+# Display
+persist.demo.hdmirotationlock=false
+vendor.display.disable_rotator_ubwc=1
+vendor.display.disable_layer_stitch=0
+vendor.display.hw_recovery_threshold=5
+
+# Fingerprint
+persist.vendor.fod.modified.dc_status=false
+persist.vendor.sys.fp.fod.location.X_Y=437,2046
+persist.vendor.sys.fp.fod.size.width_height=206,206
+ro.hardware.fp.fod=true
+ro.hardware.fp.fod.location=low
+ro.vendor.display.fod_monitor_default_fps=120
+
 # GFX
 ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.lahaina.api30
 

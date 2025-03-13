@@ -11,39 +11,34 @@ TARGET_BOOTLOADER_BOARD_NAME := taoyao
 # Inherit from sm8350-common
 include device/xiaomi/sm8350-common/BoardConfigCommon.mk
 
-# HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(DEVICE_PATH)/hidl/vendor_framework_compatibility_matrix.xml \
-    $(DEVICE_PATH)/hidl/xiaomi_framework_compatibility_matrix.xml
+# Display
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_USES_HWC2 := true
+TARGET_USES_QCOM_DISPLAY_BSP := true
+TARGET_HAS_WIDE_COLOR_DISPLAY := true
+TARGET_HAS_HDR_DISPLAY := true
+TARGET_USES_DISPLAY_RENDER_INTENTS := true
+TARGET_USE_COLOR_MANAGEMENT := true
+SF_WCG_COMPOSITION_DATA_SPACE := 143261696
+TARGET_USES_QTI_MAPPER_2_0 := true
+TARGET_USES_QTI_MAPPER_EXTENSIONS_1_1 := true
+TARGET_USES_GRALLOC4 := true
 
+# HIDL
 DEVICE_MANIFEST_FILE += \
-    $(DEVICE_PATH)/hidl/manifest_lahaina.xml \
+    $(DEVICE_PATH)/hidl/manifest_yupik.xml \
     $(DEVICE_PATH)/hidl/manifest_xiaomi.xml \
     $(DEVICE_PATH)/hidl/manifest_taoyao.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(DEVICE_PATH)/hidl/vendor_framework_compatibility_matrix.xml \
+    $(DEVICE_PATH)/hidl/xiaomi_framework_compatibility_matrix.xml \
+    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
 
 # Kernel
-TARGET_KERNEL_NO_GCC := false
-TARGET_KERNEL_SOURCE := kernel/xiaomi/taoyao
-TARGET_KERNEL_CONFIG := vendor/taoyao-qgki_defconfig
-TARGET_KERNEL_LLVM_BINUTILS := false
-TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/kernel/linux-x86/clang-r416183b
-TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/kernel-build-tools/linux-x86/bin/dtc
-TARGET_KERNEL_ADDITIONAL_FLAGS += DTC_OVERLAY_TEST_EXT=$(shell pwd)/prebuilts/kernel-build-tools/linux-x86/bin/ufdt_apply_overlay
-TARGET_KERNEL_ADDITIONAL_FLAGS += CONFIG_BUILD_ARM64_DT_OVERLAY=y
-TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTAR=$(shell pwd)/prebuilts-master/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ar
-TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTLD=$(shell pwd)/prebuilts-master/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ld
-TARGET_KERNEL_ADDITIONAL_FLAGS += REAL_CC=$(TARGET_KERNEL_CLANG_PATH)/bin/clang
-TARGET_KERNEL_ADDITIONAL_FLAGS += LLVM_NM=$(TARGET_KERNEL_CLANG_PATH)/bin/llvm-nm
-TARGET_KERNEL_ADDITIONAL_FLAGS += NM=$(TARGET_KERNEL_CLANG_PATH)/bin/llvm-nm
-
-BOOT_KERNEL_MODULES := \
-    msm_drm.ko \
-    focaltech_touch.ko \
-    goodix_core.ko \
-    hwid.ko \
-    xiaomi_touch.ko
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(BOOT_KERNEL_MODULES)
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
+TARGET_KERNEL_CONFIG += vendor/taoyao_QGKI.config
+include device/xiaomi/taoyao-kernel/BoardConfig.mk
 
 # NFC
 TARGET_USES_NQ_NFC := true
@@ -61,3 +56,4 @@ TARGET_RECOVERY_UI_MARGIN_HEIGHT := 120
 
 # Include proprietary files
 include vendor/xiaomi/taoyao/BoardConfigVendor.mk
+include hardware/qcom-caf/common/BoardConfigQcom.mk

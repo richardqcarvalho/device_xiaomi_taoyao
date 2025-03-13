@@ -3,3 +3,10 @@ soong_namespace {
         "device/xiaomi/sm8350-common",
     ],
 }
+
+install_symlink {
+    name: "firmware_qca6750_WCNSS_qcom_cfg.ini_symlink",
+    vendor: true,
+    installed_location: "firmware/wlan/qca_cld/qca6750/WCNSS_qcom_cfg.ini",
+    symlink_target: "/vendor/etc/wifi/qca6750/WCNSS_qcom_cfg.ini",
+}
