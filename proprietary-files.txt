@@ -187,9 +187,9 @@ vendor/lib64/libhta.so
 vendor/lib64/libipebpsstriping.so
 vendor/lib64/libipebpsstriping170.so
 vendor/lib64/libjpege.so
+vendor/lib64/liblogwrap_vendor.so
 vendor/lib64/libmctfengine_stub.so
 vendor/lib64/libmiStereoFactoryRemapBasicLib.so
-vendor/lib64/libmiXmlParser.so
 vendor/lib64/libmiai_portraitsupernight.so
 vendor/lib64/libmialgo_ai_vision.so
 vendor/lib64/libmialgo_basic.so
@@ -220,6 +220,7 @@ vendor/lib64/libmpbase.so
 vendor/lib64/libmicuttlefish_fs.so
 vendor/lib64/libmicuttlefish_utils.so
 vendor/lib64/libminziparchive.so
+vendor/lib64/libmivsock_utils.so
 vendor/lib64/libmmhardware.so
 vendor/lib64/libofflinedump.so
 vendor/lib64/libofflinelog.so
@@ -266,7 +267,7 @@ vendor/lib64/libxmi_high_dynamic_range.so
 vendor/lib64/libxmi_high_dynamic_range_cdsp.so
 vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
 vendor/lib64/vendor.xiaomi.hardware.campostproc@1.0-service-impl.so
-vendor/lib64/vendor.xiaomi.hardware.campostproc@1.0.so;MODULE_SUFFIX=-vendor
+vendor/lib64/vendor.xiaomi.hardware.campostproc@1.0.so;MODULE_SUFFIX=_vendor
 
 # Camera components
 vendor/lib64/camera/components/com.mi.node.aiasd.so
@@ -663,7 +664,7 @@ vendor/lib64/libdisplayfeatureservice.so
 vendor/lib64/libmiXmlParser.so
 vendor/lib64/libtinyxml.so
 vendor/lib64/libmi-stc-HW-modulate.so
-vendor/lib64/vendor.xiaomi.hardware.displayfeature@1.0.so
+system_ext/lib64/vendor.xiaomi.hardware.displayfeature@1.0.so
 
 # Display
 vendor/etc/qdcm_calib_data_xiaomi_42_02_0a_cmd_mode_dsc_dsi_panel.xml
@@ -876,8 +877,8 @@ vendor/etc/vintf/manifest/android.hardware.dumpstate@1.1-service.xiaomi.xml
 #vendor/lib64/libhdrdynamic.so
 #vendor/lib64/libhdrdynamicootf.so
 #vendor/lib64/libhdr_stub.so
--vendor/app/com.qualcomm.qti.gpudrivers.lahaina.api30/com.qualcomm.qti.gpudrivers.lahaina.api30.apk
--product/app/com.xiaomi.ugd/com.xiaomi.ugd.apk
+vendor/app/com.qualcomm.qti.gpudrivers.lahaina.api30/com.qualcomm.qti.gpudrivers.lahaina.api30.apk
+product/app/com.xiaomi.ugd/com.xiaomi.ugd.apk
 
 # Camera face detection
 vendor/etc/camera/megviifacepp_0_5_2_model:vendor/etc/camera/facedetectpp_0_5_2_model
@@ -905,9 +906,3 @@ vendor/lib64/camera.device@3.3-impl.so
 vendor/lib64/camera.device@3.2-impl.so
 vendor/lib64/camera.device@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.camera.device@3.5.so
-
-
-vendor/lib64/liblogwrap_vendor.so
-vendor/lib64/libmicuttlefish_fs.so
-vendor/lib64/libmicuttlefish_utils.so
-vendor/lib64/libmivsock_utils.so
