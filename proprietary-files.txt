@@ -3,7 +3,6 @@
 # Sensors (citsensor)
 vendor/bin/hw/vendor.xiaomi.hardware.citsensorservice@1.1-service
 vendor/etc/init/vendor.xiaomi.hardware.citsensorservice@1.1-service.rc
-vendor/etc/vintf/manifest/vendor.xiaomi.hardware.citsensorservice@1.1-service.xml
 vendor/lib64/hw/vendor.xiaomi.hardware.citsensorservice@1.1-impl.so
 vendor/lib64/vendor.xiaomi.hardware.citsensorservice@1.0.so
 vendor/lib64/vendor.xiaomi.hardware.citsensorservice@1.1.so
@@ -123,6 +122,8 @@ vendor/lib/libspkrprot.so
 vendor/lib/libvideoNS.so;DISABLE_CHECKELF
 vendor/lib/vndk/libxlog.so
 vendor/lib/libcomprcapture.so
+vendor/lib/libqtigef.so
+vendor/lib64/libaudio_log_utils.so
 
 # Audio firmware
 vendor/firmware/tfa98xx.cnt
@@ -586,9 +587,6 @@ vendor/lib64/com.qti.settings.kodiak.so
 vendor/lib64/com.qti.settings.mannar.so
 vendor/lib64/com.qti.settings.sdm865.so
 vendor/lib64/com.qti.settings.sm8350.so
-vendor/lib64/libcapiv2svacnn.so
-vendor/lib64/libcapiv2svarnn.so
-vendor/lib64/libcapiv2vop.so
 vendor/lib64/libloadalgo_stub.so
 vendor/lib64/libmm-color-convertor.so
 
@@ -642,15 +640,10 @@ vendor/firmware/evass.mbn
 vendor/firmware/evass.mdt
 
 # Display
-vendor/bin/hw/vendor.qti.hardware.display.composer-service|171aaad6a789a0b44b9bae871351a87e9b0669b5
 vendor/lib64/libdisplaydebug.so
-vendor/lib64/libdrmutils.so
 vendor/lib64/libhistogram.so
 vendor/lib64/libqdutils.so
 vendor/lib64/libqservice.so
-vendor/lib64/libsdedrm.so
-vendor/lib64/libsdmcore.so
-vendor/lib64/libsdmutils.so
 
 # Displayfeature
 vendor/bin/displayfeature
@@ -672,6 +665,12 @@ vendor/etc/qdcm_calib_data_xiaomi_36_02_0b_cmd_mode_dsc_dsi_panel.xml
 vendor/etc/mdss_dsi_l9_42_02_0a_dsc_cmd_mi.xml
 vendor/etc/mdss_dsi_l9_36_02_0b_dsc_cmd_mi.xml
 
+# Display (Hardware)
+vendor/lib64/hw/memtrack.default.so
+
+# DRM
+vendor/lib64/libsecureui.so
+
 # Graphics firmware
 vendor/firmware/a660_gmu.bin
 vendor/firmware/a660_sqe.fw
@@ -690,6 +689,18 @@ vendor/firmware/yupik_ipa_fws.b03
 vendor/firmware/yupik_ipa_fws.b04
 vendor/firmware/yupik_ipa_fws.elf
 vendor/firmware/yupik_ipa_fws.mdt
+
+# Media (Hardware)
+vendor/lib/libstagefrighthw.so
+vendor/lib64/libstagefrighthw.so
+vendor/lib64/libmm-omxcore.so
+vendor/lib64/libOmxAacEnc.so
+vendor/lib64/libOmxAmrEnc.so
+vendor/lib64/libOmxCore.so
+vendor/lib64/libOmxEvrcEnc.so
+vendor/lib64/libOmxG711Enc.so
+vendor/lib64/libOmxQcelp13Enc.so
+vendor/lib64/libplatformconfig.so
 
 # Media (VPU firmware)
 vendor/firmware/vpu20_1v.b00
@@ -722,6 +733,10 @@ vendor/firmware/vpu20_1v_unsigned.mbn
 vendor/etc/libnfc-nxp_RF.conf
 vendor/etc/libnfc-nxp.conf
 vendor/etc/libnfc-nci.conf
+
+# SecureMSM (SECDISP)
+vendor/lib64/libStDrvInt.so
+vendor/lib64/libsecureui_svcsock.so
 
 # Sensors
 vendor/bin/init.qcom.sensors.sh
@@ -819,6 +834,9 @@ vendor/etc/sensors/config/tmd3719.json
 vendor/etc/sensors/judge_calibrated.json
 vendor/etc/sensors/sns_reg_config
 
+# Trusted User Interface
+vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
+
 # Touchscreen firmware
 vendor/firmware/goodix_cfg_group_l9.bin:vendor_ramdisk/lib/firmware/goodix_cfg_group_l9.bin
 vendor/firmware/goodix_firmware_l9.bin:vendor_ramdisk/lib/firmware/goodix_firmware_l9.bin
@@ -858,7 +876,6 @@ vendor/lib64/libtriplecam_optical_zoom_control.so
 vendor/lib64/libsysmon_cdsp_skel.so
 
 # Fingerprint - from MIUI 13
-vendor/etc/vintf/manifest/fod.xml
 vendor/lib64/libgf_hal.so
 vendor/lib64/com.fingerprints.extension@3.0.so
 vendor/lib64/hw/fingerprint.goodix_fod.so:vendor/lib64/hw/fingerprint.goodix_fod.default.so;FIX_SONAME
@@ -871,7 +888,6 @@ vendor/etc/init/vendor.xiaomi.hardware.dtool@1.0-service.rc
 # Dumpstate
 vendor/bin/hw/android.hardware.dumpstate@1.1-service.xiaomi
 vendor/etc/init/android.hardware.dumpstate@1.1-service.xiaomi.rc
-vendor/etc/vintf/manifest/android.hardware.dumpstate@1.1-service.xiaomi.xml
 
 # Display HDR dynamic
 #vendor/lib64/libhdrdynamic.so
@@ -906,3 +922,6 @@ vendor/lib64/camera.device@3.3-impl.so
 vendor/lib64/camera.device@3.2-impl.so
 vendor/lib64/camera.device@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.camera.device@3.5.so
+
+# QTEE
+vendor/lib64/libQTEEConnector_listener.so
