@@ -37,7 +37,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
 
 # Kernel
-TARGET_KERNEL_CONFIG += vendor/taoyao_QGKI.config
+TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8350
 include device/xiaomi/taoyao-kernel/BoardConfig.mk
 
 # NFC
