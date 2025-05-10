@@ -80,29 +80,9 @@
          range string like '1-6,11'. -->
     <string translatable="false" name="config_wifiSoftap2gChannelList"></string>
 
-    <!-- Do not translate. Default access point SSID used for tethering -->
-    <string name="wifi_tether_configure_ssid_default" translatable="false">Xiaomi 12 Lite</string>
+     <!-- List of allowed channels in 5GHz band for softap. If the device doesn't want to restrict
+         channels this should be empty. Values is a comma separated channel string and/or channel
+         range string like '36,40,44,48,149,153,157,161,165'. -->
+    <string translatable="false" name="config_wifiSoftap5gChannelList">36,40,44,48,149,153,157,161,165</string>
 
-    <bool name="config_wifiAllowNonPersistentMacRandomizationOnOpenSsids">true</bool>
-
-    <bool name="config_vendor_softap_beacon_protection_supported">true</bool>
-
-    <bool name="config_vendor_softap_ocv_supported">true</bool>
-
-    <bool name="config_wifi6ghzSupport">false</bool>
-
-    <bool name="config_wifiMultiStaRestrictedConcurrencyEnabled">false</bool>
-
-    <bool name="config_wifiSoftapHeMuBeamformerSupported">false</bool>
-
-    <bool name="config_wifiSoftapHeTwtSupported">false</bool>
-
-    <bool name="config_wifi_framework_enable_quick_connect">true</bool>
-
-    <integer name="config_wifi_partial_scan_results_fetching_period_ms">1000</integer>
-
-    <string name="config_wifi_tcp_buffers">524288,1048576,2097152,524288,1048576,4194304</string>
-
-    <!-- True if the firmware supports p2p MAC randomization -->
-    <bool name="config_wifi_p2p_mac_randomization_supported">true</bool>
 </resources>
