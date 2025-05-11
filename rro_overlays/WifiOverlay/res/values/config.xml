@@ -85,4 +85,7 @@
          range string like '36,40,44,48,149,153,157,161,165'. -->
     <string translatable="false" name="config_wifiSoftap5gChannelList">36,40,44,48,149,153,157,161,165</string>
 
+    <!-- Do not translate. Default access point SSID used for tethering -->
+    <string name="wifi_tether_configure_ssid_default" translatable="false">Xiaomi 12 Lite</string>
+
 </resources>
