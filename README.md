@@ -1,20 +1,28 @@
-Device configuration for Xiaomi 12 Lite
-=========================================
+# Device configuration for Xiaomi 12 lite (taoyao)
 
-The Xiaomi 12 Lite (codenamed _"taoyao"_) is a mid-range smartphone from Xiaomi.
-
-It was released in September 2021.
+The Xiaomi 12 lite (codenamed _"taoyao"_) is a high-end smartphone from Xiaomi. It was released in July 2022.
 
 ## Device specifications
 
-Basic   | Spec Sheet
--------:|:-------------------------
-CPU     | Kryo 670, Up to 2.4 GHz, Octa-core CPU
-Chipset | Qualcomm Snapdragon 778G 5G (SM7325-2-AB)
-GPU     | Adreno 642L
-Memory  | 8 GB, LPDDR4X
-Storage | 128/256 GB, UFS 2.2
-Shipped Android Version | 11
-Battery | Non-removable 4250 mAh
-Display | 2400 x 1080 pixels, 6.55 inches
-Camera  | 64 MP main, 8 MP ultra-wide angle, 5 MP telemacro, 20 MP front
+| Feature                 | Specification                                                                                                                       |
+|:------------------------|:------------------------------------------------------------------------------------------------------------------------------------|
+| Chipset                 | Qualcomm SM7325 Snapdragon 778G (6nm) SM8350                                                                                              |
+| CPU                     | Octa-core (4x2.4 GHz Kryo 670 & 4x1.8 GHz Kryo 670) Cortex A78 & Cortex A55                                                                                 |
+| GPU                     | Adreno 642L                                                                                                                         |
+| Memory                  | 6/8 GB (LPDDR4X)                                                                                                                    |
+| Storage                 | 128/256 GB UFS 2.2                                                                                                                  |
+| Shipped Android Version | Android 12, MIUI 13                                                                                                                 |
+| Battery                 | Li-Po 4300 mAh, non-removable                                                                                   |
+| Display                 | 6.55 inch, 2400x1080 (20:9 ratio), 120hz, AMOLED, 68B colors, 120Hz, Dolby Vision, HDR10+, 950 nits (peak), (~402 ppi density) |
+| Rear Camera 1           | 108 MP, f/1.9, 26mm (wide), 1/1.52", 0.7µm, PDAF                                                                                     |
+| Rear Camera 2           | 8 MP, f/2.2, 120˚ (ultrawide), 1/4.0", 1.12µm                                                                                       |
+| Rear Camera 3           | 2 MP, f/2.4, (macro)                                                                             |
+| Front Camera            | 32 MP, f/2.5, (wide), 1/2.8", 0.8µm, AF                                                                                            |
+| Fingerprint             | Under display, Optical                                                                                                                         |
+
+
+## Device picture
+
+![Xiaomi 12 lite](https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-12-lite-05.jpg)
+
+Copyright (C) 2025 Taoyao-AOSP
