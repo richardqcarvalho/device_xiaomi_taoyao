@@ -433,7 +433,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
 
 # Sign
--include vendor/evolution-priv/keys/keys.mk
+-include vendor/lineage-priv/keys/keys.mk
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
