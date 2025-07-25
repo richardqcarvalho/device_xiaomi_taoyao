@@ -30,13 +30,6 @@
 # be added to search path for firmware loading
 firmware_directories /vendor/firmware_mnt/image/
 
-subsystem mi_display
-    devname uevent_devpath
-    dirname /dev/mi_display
-
-# xiaomi display feature
-/dev/mi_display/*         0666   root       graphics
-
 # the DIAG device node is not world writable/readable.
 /dev/diag                 0660   system     oem_2901
 /dev/mhi_*_pipe_4         0660   system     system

@@ -1,6 +1,5 @@
 #
-# Copyright (C) 2024 The LineageOS Project
-#
+# SPDX-FileCopyrightText: The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
 
@@ -178,8 +177,19 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint-service.xiaomi \
-    libudfpshandler
+    android.hardware.biometrics.fingerprint-service.xiaomi
+
+ifeq ($(TARGET_HAS_UDFPS),true)
+PRODUCT_PACKAGES += \
+    libudfpshandler \
+    sensors.xiaomi.v2
+
+PRODUCT_PACKAGES += \
+    FrameworkOverlayUDFPS
+
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.vendor.sensors.xiaomi.udfps=true
+endif
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
@@ -278,8 +288,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml
 
 # Kernel
-PRODUCT_ENABLE_UFFD_GC := false
-PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
+PRODUCT_ENABLE_UFFD_GC := true
 
 # Lineage Health
 PRODUCT_PACKAGES += \
@@ -343,6 +352,8 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
 PRODUCT_PACKAGES += \
+    DeviceAsWebcamOverlaySM8350 \
+    NcmTetheringOverlay \
     NfcOverlay \
     SettingsProviderOverlay
 
@@ -386,8 +397,7 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors-service.xiaomi-multihal \
-    sensors.xiaomi.v2
+    android.hardware.sensors-service.xiaomi-multihal
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
@@ -439,6 +449,10 @@ PRODUCT_COPY_FILES += \
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal-service.qti
+
+# TimeKeep
+PRODUCT_PACKAGES += \
+    TimeKeep
 
 # Touchscreen
 PRODUCT_COPY_FILES += \

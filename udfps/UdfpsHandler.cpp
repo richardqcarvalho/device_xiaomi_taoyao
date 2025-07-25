@@ -1,10 +1,9 @@
 /*
- * Copyright (C) 2022 The LineageOS Project
- *
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#define LOG_TAG "UdfpsHandler"
+#define LOG_TAG "UdfpsHandler.xiaomi_sm8350"
 
 #include <aidl/android/hardware/biometrics/fingerprint/BnFingerprint.h>
 #include <android-base/logging.h>
@@ -18,9 +17,6 @@
 
 #include "UdfpsHandler.h"
 
-#include <linux/xiaomi_touch.h>
-#include <display/drm/mi_disp.h>
-
 // Fingerprint hwmodule commands
 #define COMMAND_NIT 10
 #define PARAM_NIT_UDFPS 1
@@ -31,12 +27,11 @@
 #define PARAM_FOD_RELEASED 0
 
 // Touchscreen and HBM
-#define TOUCH_DEV_PATH "/dev/xiaomi-touch"
-#define DISP_FEATURE_PATH "/dev/mi_display/disp_feature"
-#define FOD_STATUS_PATH "/sys/devices/platform/goodix_ts.0/fod_enable"
+#define FOD_HBM_PATH "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_hbm"
+#define FOD_UI_PATH "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui"
 
-#define FOD_STATUS_OFF 0
-#define FOD_STATUS_ON 1
+#define FOD_HBM_OFF 0
+#define FOD_HBM_ON 1
 
 using ::aidl::android::hardware::biometrics::fingerprint::AcquiredInfo;
 
@@ -65,50 +60,48 @@ static bool readBool(int fd) {
     return c != '0';
 }
 
-struct disp_base displayBasePrimary = {
-    .flag = 0,
-    .disp_id = MI_DISP_PRIMARY,
-};
-
 class XiaomiUdfpsHandler : public UdfpsHandler {
   public:
     void init(fingerprint_device_t* device) {
         mDevice = device;
-        dispFeatureFd = android::base::unique_fd(open(DISP_FEATURE_PATH, O_RDWR));
-        touchUniqueFd = android::base::unique_fd(open(TOUCH_DEV_PATH, O_RDWR));
+
+        std::thread([this]() {
+            android::base::unique_fd fd(open(FOD_UI_PATH, O_RDONLY));
+            if (fd < 0) {
+                LOG(ERROR) << "failed to open " << FOD_UI_PATH << " , err: " << fd;
+                return;
+            }
+
+            struct pollfd fodUiPoll = {
+                    .fd = fd.get(),
+                    .events = POLLERR | POLLPRI,
+                    .revents = 0,
+            };
+
+            while (true) {
+                int rc = poll(&fodUiPoll, 1, -1);
+                if (rc < 0) {
+                    LOG(ERROR) << "failed to poll " << FOD_UI_PATH << ", err: " << rc;
+                    continue;
+                }
+
+                if (fodUiPoll.revents & (POLLERR | POLLPRI)) {
+                    bool nitState = readBool(fd.get());
+                    mDevice->extCmd(mDevice, COMMAND_NIT,
+                                    nitState ? PARAM_NIT_UDFPS : PARAM_NIT_NONE);
+                }
+            }
+        }).detach();
     }
 
     void onFingerDown(uint32_t /*x*/, uint32_t /*y*/, float /*minor*/, float /*major*/) {
         if (mAuthSuccess) return;
-
-        int buf[MAX_BUF_SIZE] = {MI_DISP_PRIMARY, Touch_Fod_Enable, PARAM_FOD_PRESSED};
-        ioctl(touchUniqueFd.get(), TOUCH_IOC_SET_CUR_VALUE, &buf);
-
-        mDevice->extCmd(mDevice, COMMAND_NIT, PARAM_NIT_UDFPS);
-
-        struct disp_feature_req req = {
-            .base = displayBasePrimary,
-            .feature_id = DISP_FEATURE_LOCAL_HBM,
-            .feature_val = LOCAL_HBM_NORMAL_WHITE_1000NIT,
-        };
-        ioctl(dispFeatureFd.get(), MI_DISP_IOCTL_SET_FEATURE, &req);
-        
+        set(FOD_HBM_PATH, FOD_HBM_ON);
         mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_STATUS, PARAM_FOD_PRESSED);
     }
 
     void onFingerUp() {
-        int buf[MAX_BUF_SIZE] = {MI_DISP_PRIMARY, Touch_Fod_Enable, PARAM_FOD_RELEASED};
-        ioctl(touchUniqueFd.get(), TOUCH_IOC_SET_CUR_VALUE, &buf);
-
-        mDevice->extCmd(mDevice, COMMAND_NIT, PARAM_NIT_NONE);
-
-        struct disp_feature_req req = {
-            .base = displayBasePrimary,
-            .feature_id = DISP_FEATURE_LOCAL_HBM,
-            .feature_val = LOCAL_HBM_OFF_TO_NORMAL,
-        };
-        ioctl(dispFeatureFd.get(), MI_DISP_IOCTL_SET_FEATURE, &req);
-
+        set(FOD_HBM_PATH, FOD_HBM_OFF);
         mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_STATUS, PARAM_FOD_RELEASED);
     }
 
@@ -145,8 +138,6 @@ class XiaomiUdfpsHandler : public UdfpsHandler {
   private:
     fingerprint_device_t* mDevice;
     bool mAuthSuccess = false;
-    android::base::unique_fd dispFeatureFd;
-    android::base::unique_fd touchUniqueFd;
 };
 
 static UdfpsHandler* create() {

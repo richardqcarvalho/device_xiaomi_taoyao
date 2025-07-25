@@ -1563,9 +1563,6 @@ vendor/etc/thermal-videochat.conf
 vendor/etc/thermald-devices.conf
 
 # Time services
-vendor/app/TimeService/TimeService.apk
-vendor/bin/time_daemon
-vendor/etc/init/init.time_daemon.rc
 vendor/lib64/libtime_genoff.so
 
 # Touchscreen firmware

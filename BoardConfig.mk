@@ -1,6 +1,5 @@
 #
-# Copyright (C) 2020 The LineageOS Project
-#
+# SPDX-FileCopyrightText: The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
 
@@ -87,15 +86,8 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
 TARGET_KERNEL_ADDITIONAL_FLAGS := TARGET_PRODUCT=$(PRODUCT_DEVICE)
 TARGET_KERNEL_NO_GCC := true
-TARGET_KERNEL_SOURCE := kernel/xiaomi/taoyao
-TARGET_KERNEL_CONFIG := vendor/taoyao-qgki_defconfig
-
-TARGET_NO_KERNEL_OVERRIDE := true
-BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)/prebuilts/dtb
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
-
-PRODUCT_COPY_FILES += \
-	$(DEVICE_PATH)/prebuilts/kernel:kernel
+TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8350
+TARGET_KERNEL_CONFIG := vendor/lahaina-qgki_defconfig vendor/xiaomi_QGKI.config vendor/taoyao_QGKI.config
 
 BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0
 BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
@@ -112,18 +104,13 @@ BOARD_KERNEL_CMDLINE += ip6table_raw.raw_before_defrag=1
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 
 # Kernel modules
-BOARD_KERNEL_MODULE_DIRS := 5.4-gki
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
-    $(DEVICE_PATH)/prebuilts/modules/focaltech_touch.ko \
-    $(DEVICE_PATH)/prebuilts/modules/goodix_core.ko \
-    $(DEVICE_PATH)/prebuilts/modules/hwid.ko \
-    $(DEVICE_PATH)/prebuilts/modules/msm_drm.ko \
-    $(DEVICE_PATH)/prebuilts/modules/xiaomi_touch.ko
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES)
-BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(DEVICE_PATH)/prebuilts/modules/*.ko)
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(BOARD_VENDOR_KERNEL_MODULES)
-BOARD_VENDOR_KERNEL_MODULES_5.4-gki := $(wildcard $(DEVICE_PATH)/prebuilts/modules/5.4-gki/*.ko)
-BOARD_VENDOR_KERNEL_MODULES_LOAD_5.4-gki := $(BOARD_VENDOR_KERNEL_MODULES_5.4-gki)
+BOOT_KERNEL_MODULES := \
+    focaltech_touch.ko \
+    goodix_core.ko \
+    hwid.ko \
+    msm_drm.ko \
+    xiaomi_touch.ko
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(BOOT_KERNEL_MODULES)
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -185,6 +172,7 @@ VENDOR_SECURITY_PATCH := 2025-06-05
 # Sepolicy
 include device/lineage/sepolicy/libperfmgr/sepolicy.mk
 include device/qcom/sepolicy_vndr/SEPolicy.mk
+include hardware/sony/timekeep/sepolicy/SEPolicy.mk
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
