@@ -180,7 +180,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2025-06-05
+VENDOR_SECURITY_PATCH := 2025-08-05
 
 # Sepolicy
 include device/lineage/sepolicy/libperfmgr/sepolicy.mk

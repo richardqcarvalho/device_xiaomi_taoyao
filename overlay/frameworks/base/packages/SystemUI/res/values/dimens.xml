@@ -5,10 +5,10 @@
 -->
 <resources>
     <!-- Default paddings for content around the corners. -->
-    <dimen name="status_bar_padding_start">24dp</dimen>
+    <dimen name="status_bar_padding_top">8dp</dimen>
 
     <!-- Margin on the left side of the carrier text on Keyguard -->
-    <dimen name="keyguard_carrier_text_margin">0dp</dimen>
+    <dimen name="keyguard_carrier_text_margin">11dp</dimen>
 
     <!-- Bottom margin size when fingerprint in display is active -->
     <dimen name="keyguard_indication_margin_bottom">11dp</dimen>
