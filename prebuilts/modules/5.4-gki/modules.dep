@@ -1,5 +1,6 @@
 /vendor/lib/modules/5.4-gki/qsee_ipc_irq.ko:
 /vendor/lib/modules/5.4-gki/qcom_pm8008-regulator.ko:
+/vendor/lib/modules/5.4-gki/miev.ko:
 /vendor/lib/modules/5.4-gki/xhci-plat-hcd.ko: /vendor/lib/modules/5.4-gki/xhci-hcd.ko
 /vendor/lib/modules/5.4-gki/goodix_core.ko: /vendor/lib/modules/5.4-gki/xiaomi_touch.ko /vendor/lib/modules/5.4-gki/msm_drm.ko /vendor/lib/modules/5.4-gki/smem.ko /vendor/lib/modules/5.4-gki/spmi-pmic-arb.ko /vendor/lib/modules/5.4-gki/hdcp_qseecom.ko /vendor/lib/modules/5.4-gki/qseecom-mod.ko /vendor/lib/modules/5.4-gki/msm_ion_heaps.ko /vendor/lib/modules/5.4-gki/hh_rm_drv.ko /vendor/lib/modules/5.4-gki/hh_dbl.ko /vendor/lib/modules/5.4-gki/hh_msgq.ko /vendor/lib/modules/5.4-gki/msm_dma_iommu_mapping.ko /vendor/lib/modules/5.4-gki/dwc3-msm.ko /vendor/lib/modules/5.4-gki/qcom_llcc.ko /vendor/lib/modules/5.4-gki/ssusb-redriver-nb7vpq904m.ko /vendor/lib/modules/5.4-gki/ucsi_glink.ko /vendor/lib/modules/5.4-gki/typec_ucsi.ko /vendor/lib/modules/5.4-gki/dwc3.ko /vendor/lib/modules/5.4-gki/altmode-glink.ko /vendor/lib/modules/5.4-gki/pmic_glink.ko /vendor/lib/modules/5.4-gki/service-notifier.ko /vendor/lib/modules/5.4-gki/subsystem_restart.ko /vendor/lib/modules/5.4-gki/service-locator.ko /vendor/lib/modules/5.4-gki/qmi_helpers.ko
 /vendor/lib/modules/5.4-gki/smp2p_sleepstate.ko:
