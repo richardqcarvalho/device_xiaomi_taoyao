@@ -18,9 +18,3 @@ allow hal_camera_client vendor_hal_cameraperf_hwservice:hwservice_manager find;
 allow hal_camera_client vendor_hal_camerapostproc_xiaomi_hwservice:hwservice_manager find;
 
 allow hal_camera_default public_adsprpcd_file:file r_file_perms;
-
-allow hal_camera_default proc_stat:file { open read };
-allow hal_camera_default system_data_file:dir { add_name search write };
-allow hal_camera_default system_data_file:file { create write setattr open read getattr };
-allow hal_camera_default vendor_hal_qspmhal_hwservice:hwservice_manager find;
-binder_call(hal_camera_default, platform_app);

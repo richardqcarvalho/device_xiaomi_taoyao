@@ -89,8 +89,6 @@ TARGET_KERNEL_NO_GCC := true
 TARGET_KERNEL_SOURCE := kernel/xiaomi/taoyao
 TARGET_KERNEL_CONFIG := vendor/taoyao-qgki_defconfig
 
-include device/xiaomi/taoyao-kernel/BoardConfig.mk
-
 BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0
 BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
 BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a600000.dwc3
@@ -104,6 +102,8 @@ BOARD_KERNEL_CMDLINE += pcie_ports=compat
 BOARD_KERNEL_CMDLINE += iptable_raw.raw_before_defrag=1
 BOARD_KERNEL_CMDLINE += ip6table_raw.raw_before_defrag=1
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
+
+-include device/xiaomi/taoyao-kernel/BoardConfig.mk
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -140,7 +140,6 @@ TARGET_BOARD_PLATFORM := lahaina
 
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
-TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/system_ext.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
@@ -205,3 +204,6 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit proprietary blobs
 include vendor/xiaomi/taoyao/BoardConfigVendor.mk
+
+# Inherit camera proprietary blobs
+-include device/xiaomi/taoyao-camera/BoardConfig.mk
