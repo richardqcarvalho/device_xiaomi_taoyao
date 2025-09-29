@@ -89,12 +89,7 @@ TARGET_KERNEL_NO_GCC := true
 TARGET_KERNEL_SOURCE := kernel/xiaomi/taoyao
 TARGET_KERNEL_CONFIG := vendor/taoyao-qgki_defconfig
 
-TARGET_NO_KERNEL_OVERRIDE := true
-BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)/prebuilts/dtb
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
-
-PRODUCT_COPY_FILES += \
-	$(DEVICE_PATH)/prebuilts/kernel:kernel
+include device/xiaomi/taoyao-kernel/BoardConfig.mk
 
 BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0
 BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
@@ -109,20 +104,6 @@ BOARD_KERNEL_CMDLINE += pcie_ports=compat
 BOARD_KERNEL_CMDLINE += iptable_raw.raw_before_defrag=1
 BOARD_KERNEL_CMDLINE += ip6table_raw.raw_before_defrag=1
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
-
-# Kernel modules
-BOARD_KERNEL_MODULE_DIRS := 5.4-gki
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
-    $(DEVICE_PATH)/prebuilts/modules/focaltech_touch.ko \
-    $(DEVICE_PATH)/prebuilts/modules/goodix_core.ko \
-    $(DEVICE_PATH)/prebuilts/modules/hwid.ko \
-    $(DEVICE_PATH)/prebuilts/modules/msm_drm.ko \
-    $(DEVICE_PATH)/prebuilts/modules/xiaomi_touch.ko
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES)
-BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(DEVICE_PATH)/prebuilts/modules/*.ko)
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(BOARD_VENDOR_KERNEL_MODULES)
-BOARD_VENDOR_KERNEL_MODULES_5.4-gki := $(wildcard $(DEVICE_PATH)/prebuilts/modules/5.4-gki/*.ko)
-BOARD_VENDOR_KERNEL_MODULES_LOAD_5.4-gki := $(BOARD_VENDOR_KERNEL_MODULES_5.4-gki)
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
