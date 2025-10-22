@@ -1,4 +1,4 @@
-# All unpinned blobs below are extracted from taoyao V816.0.26.0.ULIMIXM
+# All unpinned blobs below are extracted from taoyao V816.0.27.0.ULIMIXM
 
 # ACDB
 vendor/etc/acdbdata/Forte/Forte_Bluetooth_cal.acdb
